@@ -1,18 +1,23 @@
 #include <Arduino.h>
+#include <Servo.h>
 
-// put function declarations here:
-int myFunction(int, int);
+Servo shoulderServo;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  shoulderServo.attach(9);
 }
 
+//basic sweep test
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  
+  for(int pos = 0; pos < 180; ++pos) {
+    shoulderServo.write(pos);
+    delay(10);
+  }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  for(int pos = 180; pos > 0; --pos) {
+    shoulderServo.write(pos);
+    delay(10);
+  }
+
 }
